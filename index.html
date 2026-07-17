@@ -1,26 +1,113 @@
 <!DOCTYPE html>
 <html lang="de">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <title>SOS Wohnungslosenhilfe</title>
-
-  <meta
-    http-equiv="refresh"
-    content="0; url=Startseite/Starseite.html"
-  >
-
-  <script>
-    window.location.replace("Startseite/Starseite.html");
-  </script>
-</head>
-
-<body>
-  <p>
-    Du wirst zur Startseite weitergeleitet.
-    Falls das nicht funktioniert:
-    <a href="Startseite/Starseite.html">Startseite öffnen</a>
-  </p>
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SOS Wohnungslosenhilfe</title>
+    <style>
+      body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+        background: #f7f9fb;
+        color: #111;
+        min-height: 100vh;
+      }
+      .page {
+        max-width: 960px;
+        margin: 0 auto;
+        padding: 40px 20px;
+      }
+      .hero {
+        display: grid;
+        gap: 24px;
+        align-items: center;
+        justify-items: center;
+      }
+      h1 {
+        margin: 0;
+        font-size: clamp(2.4rem, 4vw, 3.5rem);
+        line-height: 1.05;
+      }
+      p {
+        max-width: 700px;
+        line-height: 1.7;
+        color: #333;
+      }
+      .links {
+        display: grid;
+        gap: 16px;
+        width: 100%;
+      }
+      .card {
+        display: block;
+        padding: 22px 24px;
+        background: #fff;
+        border: 1px solid #d7e0ea;
+        border-radius: 20px;
+        text-decoration: none;
+        color: #111;
+        box-shadow: 0 10px 28px rgba(15, 44, 99, 0.08);
+        transition: transform 0.2s ease, border-color 0.2s ease;
+      }
+      .card:hover {
+        transform: translateY(-3px);
+        border-color: #2aa4b8;
+      }
+      .card-title {
+        margin: 0 0 8px;
+        font-size: 1.25rem;
+      }
+      .card-desc {
+        margin: 0;
+        color: #556679;
+        line-height: 1.6;
+      }
+      .footer {
+        margin-top: 40px;
+        font-size: 0.96rem;
+        color: #5f6f87;
+        text-align: center;
+      }
+      @media (min-width: 680px) {
+        .links {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main class="page">
+      <section class="hero">
+        <h1>SOS Wohnungslosenhilfe</h1>
+        <p>Willkommen zur Webseite der SOS Wohnungslosenhilfe. Wähle eine Seite zum Starten und öffne direkt die passende Inhaltsebene für deine Hilfe, Spenden oder FAQ.</p>
+      </section>
+      <section class="links">
+        <a class="card" href="Startseite/Starseite.html">
+          <h2 class="card-title">Startseite</h2>
+          <p class="card-desc">Zur Hauptseite mit Bild, Navigation und allgemeinen Informationen über den Verein.</p>
+        </a>
+        <a class="card" href="Wohnungslosigkeit/Wohnungslosigkeit.html">
+          <h2 class="card-title">Wohnungslosigkeit</h2>
+          <p class="card-desc">Informationen zum Thema Wohnungslosigkeit und wie die SOS Wohnungslosenhilfe aktiv unterstützt.</p>
+        </a>
+        <a class="card" href="Verein/Verein.html">
+          <h2 class="card-title">Verein</h2>
+          <p class="card-desc">Details zum Verein, den Mitgliedern und der Zielsetzung der Organisation.</p>
+        </a>
+        <a class="card" href="Spenden/Spenden.html">
+          <h2 class="card-title">Spenden</h2>
+          <p class="card-desc">Hier findest du die Spendenseite mit allen Infos, wie du den Verein unterstützen kannst.</p>
+        </a>
+        <a class="card" href="FAQ/FAQ.html">
+          <h2 class="card-title">FAQ</h2>
+          <p class="card-desc">Häufige Fragen und Antworten rund um den Verein, Spenden und Unterstützung.</p>
+        </a>
+        <a class="card" href="Kontakt/Kontakt.html">
+          <h2 class="card-title">Kontakt</h2>
+          <p class="card-desc">Kontaktinformationen und Ansprechpartner für deine Fragen oder Spendenanfragen.</p>
+        </a>
+      </section>
+      <div class="footer">Diese Website wurde lokal eingerichtet. Um sie online zu bringen, lade den Ordner in ein GitHub-Repository und aktiviere GitHub Pages.</div>
+    </main>
+  </body>
 </html>
