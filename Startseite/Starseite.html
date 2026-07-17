@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="de">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Obdachlosenhilfe</title>
+     <style>
+  @import url('https://fonts.googleapis.com/css2?family=Sofia+Sans+Condensed:wght@300;400;500;600;700;800&display=swap');
+
+  :root {
+      --black: #000000;
+      --white: #ffffff;
+      --gray: #666666;
+      --lightgray: #B6B8BA;
+      --blue: #22A9AB;
+      --lightblue: #A5DAEC;
+      --orange: #F29F28;
+      --content-width: 1200px;
+  }
+
+  /*Grundeinstellungen*/
+  * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+  }
+
+  body {
+      font-family: 'Sofia Sans Condensed', 'Arial Narrow', Arial, sans-serif;
+      line-height: 1.6;
+      background-color: var(--white);
+      color: var(--black);
+  }
+
+  .container {
+      max-width: var(--content-width);
+      margin: 0 auto;
+      padding: 0 20px;
+  }
+
+  :root {
+    color-scheme: light;
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+
+  body {
+    margin: 0;
+    line-height: 1.6;
+  }
+
+  body.menu-open {
+    overflow: hidden;
+  }
+
+  .header {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    background: rgba(255, 250, 242, 0.95);
+    border-bottom: 1px solid var(--color-border);
+    backdrop-filter: blur(10px);
+    transition: transform 0.25s ease;
+  }
+
+  .header.is-hidden {
+    transform: translateY(-100%);
+  }
+
+  .header__inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.85rem;
+    padding: 1.1rem 1.5rem 0.9rem;
+  }
+
+  .header__brand {
+    color: var(--color-accent-strong);
+    text-decoration: none;
+    font-size: 1.8rem;
+    font-weight: 800;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+
+  .header__nav {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.35rem;
+  }
+
+  .header__nav a {
+    color: var(--color-accent);
+    text-decoration: none;
+    font-weight: 600;
+    padding: 0.35rem 0.65rem;
+  }
+
+  .header__nav a::before {
+    content: "•";
+    margin-right: 0.35rem;
+    color: var(--color-highlight);
+  }
+
+  .header__nav a:first-child::before {
+    content: "";
+    margin-right: 0;
+  }
+
+  .header__menu-button {
+    display: none;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 4px;
+    width: 44px;
+    height: 44px;
+    border: 0;
+    border-radius: 999px;
+    background: transparent;
+    cursor: pointer;
+    padding: 0.35rem;
+  }
+
+  .header__menu-button span {
+    display: block;
+    width: 24px;
+    height: 2px;
+    background: var(--color-accent-strong);
+    transition: transform 0.25s ease, opacity 0.25s ease;
+  }
+
+  .header__menu-button.is-open span:nth-child(1) {
+    transform: translateY(6px) rotate(45deg);
+  }
+
+  .header__menu-button.is-open span:nth-child(2) {
+    opacity: 0;
+  }
+
+  .header__menu-button.is-open span:nth-child(3) {
+    transform: translateY(-6px) rotate(-45deg);
+  }
+
+  .overlay-menu {
+    position: fixed;
+    inset: 0;
+    z-index: 1100;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, var(--color-accent-strong), var(--color-accent));
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: opacity 0.25s ease, visibility 0.25s ease;
+  }
+
+  .overlay-menu.is-open {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+  }
+
+  .overlay-menu__close {
+    position: absolute;
+    top: 1.2rem;
+    right: 1.2rem;
+    border: 0;
+    background: transparent;
+    color: #fff;
+    font-size: 2rem;
+    cursor: pointer;
+  }
+
+  .overlay-menu__nav {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .overlay-menu__nav a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 1.35rem;
+    font-weight: 600;
+  }
+
+  .page {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 3rem 1.5rem 4rem;
+  }
+
+  .hero {
+    background: transparent;
+    border: 0;
+    box-shadow: none;
+    padding: 0;
+  }
+
+  .hero__image-wrap {
+    position: relative;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .hero__image {
+    display: block;
+    width: 100%;
+    max-width: 1200px;
+    height: auto;
+  }
+
+  .hero__text-box {
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    background: #000;
+    color: #fff;
+    padding: 1.1rem 1.4rem;
+    max-width: 280px;
+    text-transform: uppercase;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    line-height: 1.2;
+  }
+
+  .hero__circle {
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 160px;
+    height: 160px;
+    border-radius: 50%;
+    background: var(--color-highlight);
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    text-transform: uppercase;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    padding: 1rem;
+    line-height: 1.2;
+  }
+
+  .content-section {
+    margin-top: 2.5rem;
+    padding: 0 0 1.5rem;
+  }
+
+  .content-section h2 {
+    margin: 0 0 1rem;
+    font-size: clamp(1.5rem, 2.4vw, 2rem);
+  }
+
+  .content-section p {
+    margin: 0 0 1.5rem;
+    color: var(--color-muted);
+    font-size: 1rem;
+  }
+
+  .content-section__image {
+    display: block;
+    width: 100%;
+    max-width: 1000px;
+    height: auto;
+    border-radius: 1rem;
+  }
+
+  .content-section--secondary {
+    margin-top: 2rem;
+  }
+
+  .footer {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 1.5rem 2.5rem;
+  }
+
+  .footer__divider {
+    height: 3px;
+    background: #8fc7da;
+    margin-bottom: 1.5rem;
+  }
+
+  .footer__actions {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .footer__button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 170px;
+    padding: 0.8rem 1.2rem;
+    text-decoration: none;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    border: 2px solid;
+    transition: all 0.25s ease;
+  }
+
+  .footer__button--orange {
+    color: var(--color-highlight);
+    border-color: var(--color-highlight);
+    background: transparent;
+  }
+
+  .footer__button--orange:hover {
+    background: var(--color-highlight);
+    color: #fff;
+  }
+
+  .footer__button--blue {
+    color: var(--color-accent);
+    border-color: var(--color-accent);
+    background: transparent;
+  }
+
+  .footer__button--blue:hover {
+    background: var(--color-accent);
+    color: #fff;
+  }
+
+  .footer__links {
+    display: flex;
+    justify-content: center;
+    gap: 1.25rem;
+    margin-top: 1rem;
+  }
+
+  .footer__links a {
+    color: #7b7b7b;
+    text-decoration: none;
+    font-size: 0.95rem;
+  }
+
+  @media (max-width: 800px) {
+    .header__inner {
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 1.25rem;
+    }
+
+    .header__brand {
+      font-size: 1.25rem;
+    }
+
+    .header__nav {
+      display: none;
+    }
+
+    .header__menu-button {
+      display: flex;
+    }
+
+    .page {
+      padding: 2rem 1rem 3rem;
+    }
+
+    .hero__text-box {
+      position: static;
+      transform: none;
+      max-width: none;
+      margin-top: 1rem;
+      text-align: center;
+    }
+
+    .hero__circle {
+      position: static;
+      transform: none;
+      margin: 1rem auto 0;
+      width: 140px;
+      height: 140px;
+    }
+
+    .hero__image-wrap {
+      flex-direction: column;
+    }
+  }
+     </style>
+  </head>
+  <body>
+    <header class="header" id="site-header">
+      <div class="header__inner">
+        <a class="header__brand" href="Starseite.html" aria-label="Zur Startseite">Obdachlosenhilfe</a>
+
+        <button
+          class="header__menu-button"
+          type="button"
+          aria-label="Menü öffnen"
+          aria-expanded="false"
+          aria-controls="mobile-menu"
+        >
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+
+        <nav class="header__nav" aria-label="Hauptnavigation">
+          <a href="Starseite.html">Wohnungslosigkeit</a>
+          <a href="../Verein/Starseite.html">Verein</a>
+          <a href="../Spenden/Starseite.html">Spenden</a>
+          <a href="../FAQ/Starseite.html">FAQ</a>
+          <a href="../Kontakt/Starseite.html">Kontakt</a>
+        </nav>
+      </div>
+    </header>
+
+    <div class="overlay-menu" id="mobile-menu" aria-hidden="true">
+      <button class="overlay-menu__close" type="button" aria-label="Menü schließen">×</button>
+      <nav class="overlay-menu__nav" aria-label="Mobile Navigation">
+        <a href="Starseite.html">Wohnungslosigkeit</a>
+        <a href="../Verein/Starseite.html">Verein</a>
+        <a href="../Spenden/Starseite.html">Spenden</a>
+        <a href="../FAQ/Starseite.html">FAQ</a>
+        <a href="../Kontakt/Starseite.html">Kontakt</a>
+      </nav>
+    </div>
+
+    <main class="page">
+      <section class="hero">
+        <div class="hero__image-wrap">
+          <img class="hero__image" src="Bild Startseite.png" alt="Menschen in der Gemeinschaft" />
+          <div class="hero__text-box">
+            <span>gemeinsam für neue perspektiven</span>
+          </div>
+          <div class="hero__circle">
+            <span>deine spende zählt</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="content-section">
+        <h2>SOS Wohnungslosenhilfe e.V.</h2>
+        <p>
+          Wohnungsloser Menschen geraten in eine Krise, in der nichts mehr geht. Ohne Wohnung keine
+          Adresse, ohne Adresse kein Arbeitsvertrag, kein Bankkonto, keine Chance auf einen neuen
+          Mietvertrag. Und Geldbörse und Dokumente sind anfällig für Diebstahl und Verlust. Oft ist
+          die einzige Hoffnung der Antrag auf Sozialleistungen. Doch man braucht bereits etwas Geld,
+          um überhaupt Leistungen beantragen zu können. Das Sozialamt hilft den Menschen, auch mit
+          Bereitstellung einer Unterkunft, kann jedoch nicht alle Kosten übernehmen. Der Verein „SOS
+          Wohnungslosenhilfe e.V.“ wird daher ergänzend überbrückend in Notlagen tätig und
+          unterstützt die Teilhabe wohnungsloser Menschen am gesellschaftlichen Leben.
+        </p>
+
+        <img class="content-section__image" src="Bild Startseite.png" alt="Gruppenbild" />
+      </section>
+
+      <section class="content-section content-section--secondary">
+        <h2>gemeinsam wachsen</h2>
+        <p>
+          Um noch mehr Menschen helfen zu können, möchten wir unseren Verein weiter ausbauen. Dafür
+          sind wir auf Unterstützung angewiesen - jede Hilfe zählt. Ob durch Engagement oder Spenden:
+          Wir freuen uns über jede Form der Unterstützung.
+        </p>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="footer__divider"></div>
+      <div class="footer__actions">
+        <a class="footer__button footer__button--orange" href="../Spenden/Starseite.html">Jetzt spenden</a>
+        <a class="footer__button footer__button--blue" href="../Kontakt/Starseite.html">Kontakt</a>
+      </div>
+      <div class="footer__links">
+        <a href="#">Impressum</a>
+        <a href="#">Datenschutz</a>
+      </div>
+    </footer>
+
+    <script src="script.js"></script>
+  </body>
+</html>

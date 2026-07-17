@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="de">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>FAQ</title>
+    <style>
+@import url('https://fonts.googleapis.com/css2?family=Sofia+Sans+Condensed:wght@300;400;500;600;700;800&display=swap');
+
+:root {
+    --black: #000000;
+    --white: #ffffff;
+    --gray: #666666;
+    --lightgray: #B6B8BA;
+    --blue: #22A9AB;
+    --lightblue: #A5DAEC;
+    --orange: #F29F28;
+    --content-width: 1200px;
+}
+
+/*Grundeinstellungen*/
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Sofia Sans Condensed', 'Arial Narrow', Arial, sans-serif;
+    line-height: 1.6;
+    background-color: var(--white);
+    color: var(--black);
+}
+
+.container {
+    max-width: var(--content-width);
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+:root {
+  color-scheme: light;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  line-height: 1.6;
+}
+
+body.menu-open {
+  overflow: hidden;
+}
+
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background: rgba(255, 250, 242, 0.95);
+  border-bottom: 1px solid var(--color-border);
+  backdrop-filter: blur(10px);
+  transition: transform 0.25s ease;
+}
+
+.header.is-hidden {
+  transform: translateY(-100%);
+}
+
+.header__inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.85rem;
+  padding: 1.1rem 1.5rem 0.9rem;
+}
+
+.header__brand {
+  color: var(--color-accent-strong);
+  text-decoration: none;
+  font-size: 1.8rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.header__nav {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.35rem;
+}
+
+.header__nav a {
+  color: var(--color-accent);
+  text-decoration: none;
+  font-weight: 600;
+  padding: 0.35rem 0.65rem;
+}
+
+.header__menu-button {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 4px;
+  width: 44px;
+  height: 44px;
+  border: 0;
+  border-radius: 999px;
+  background: transparent;
+  cursor: pointer;
+  padding: 0.35rem;
+}
+
+.header__menu-button span {
+  display: block;
+  width: 24px;
+  height: 2px;
+  background: var(--color-accent-strong);
+  transition: transform 0.25s ease, opacity 0.25s ease;
+}
+
+.header__menu-button.is-open span:nth-child(1) {
+  transform: translateY(6px) rotate(45deg);
+}
+
+.header__menu-button.is-open span:nth-child(2) {
+  opacity: 0;
+}
+
+.header__menu-button.is-open span:nth-child(3) {
+  transform: translateY(-6px) rotate(-45deg);
+}
+
+.overlay-menu {
+  position: fixed;
+  inset: 0;
+  z-index: 1100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, var(--color-accent-strong), var(--color-accent));
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity 0.25s ease, visibility 0.25s ease;
+}
+
+.overlay-menu.is-open {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+
+.overlay-menu__close {
+  position: absolute;
+  top: 1.2rem;
+  right: 1.2rem;
+  border: 0;
+  background: transparent;
+  color: #fff;
+  font-size: 2rem;
+  cursor: pointer;
+}
+
+.overlay-menu__nav {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.overlay-menu__nav a {
+  color: #fff;
+  text-decoration: none;
+  font-size: 1.35rem;
+  font-weight: 600;
+}
+
+.page {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem 1.5rem 3rem;
+}
+
+.faq-hero img,
+.faq-frame img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.faq-hero {
+  margin-bottom: 1.5rem;
+}
+
+.faq-list {
+  margin-top: 2rem;
+  display: grid;
+  gap: 1rem;
+}
+
+.faq-item {
+  padding: 1rem 1.2rem;
+  border: 1px solid var(--color-border);
+  border-radius: 0.9rem;
+  background: var(--color-surface, #fffaf2);
+}
+
+.faq-item h3 {
+  margin: 0 0 0.4rem;
+  color: var(--color-accent-strong);
+  font-size: 1.1rem;
+}
+
+.faq-item p {
+  margin: 0;
+  color: var(--color-muted);
+}
+
+.footer {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 1.5rem 2.5rem;
+}
+
+.footer__divider {
+  height: 3px;
+  background: #8fc7da;
+  margin-bottom: 1.5rem;
+}
+
+.footer__actions {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.footer__button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 170px;
+  padding: 0.8rem 1.2rem;
+  text-decoration: none;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  border: 2px solid;
+  transition: all 0.25s ease;
+}
+
+.footer__button--orange {
+  color: var(--color-highlight);
+  border-color: var(--color-highlight);
+  background: transparent;
+}
+
+.footer__button--orange:hover {
+  background: var(--color-highlight);
+  color: #fff;
+}
+
+.footer__button--blue {
+  color: var(--color-accent);
+  border-color: var(--color-accent);
+  background: transparent;
+}
+
+.footer__button--blue:hover {
+  background: var(--color-accent);
+  color: #fff;
+}
+
+.footer__links {
+  display: flex;
+  justify-content: center;
+  gap: 1.25rem;
+  margin-top: 1rem;
+}
+
+.footer__links a {
+  color: #7b7b7b;
+  text-decoration: none;
+  font-size: 0.95rem;
+}
+
+@media (max-width: 800px) {
+  .header__inner {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 1.25rem;
+  }
+
+  .header__brand {
+    font-size: 1.25rem;
+  }
+
+  .header__nav {
+    display: none;
+  }
+
+  .header__menu-button {
+    display: flex;
+  }
+
+  .page {
+    padding: 1rem 1rem 2rem;
+  }
+}
+    </style>
+  </head>
+  <body>
+    <header class="header" id="site-header">
+      <div class="header__inner">
+        <a class="header__brand" href="../Startseite/Starseite.html" aria-label="Zur Startseite">Obdachlosenhilfe</a>
+
+        <button
+          class="header__menu-button"
+          type="button"
+          aria-label="Menü öffnen"
+          aria-expanded="false"
+          aria-controls="mobile-menu"
+        >
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+
+        <nav class="header__nav" aria-label="Hauptnavigation">
+          <a href="../Startseite/Starseite.html">Wohnungslosigkeit</a>
+          <a href="../Verein/Starseite.html">Verein</a>
+          <a href="../Spenden/Starseite.html">Spenden</a>
+          <a href="Starseite.html">FAQ</a>
+          <a href="../Kontakt/Starseite.html">Kontakt</a>
+        </nav>
+      </div>
+    </header>
+
+    <div class="overlay-menu" id="mobile-menu" aria-hidden="true">
+      <button class="overlay-menu__close" type="button" aria-label="Menü schließen">×</button>
+      <nav class="overlay-menu__nav" aria-label="Mobile Navigation">
+        <a href="../Startseite/Starseite.html">Wohnungslosigkeit</a>
+        <a href="../Verein/Starseite.html">Verein</a>
+        <a href="../Spenden/Starseite.html">Spenden</a>
+        <a href="Starseite.html">FAQ</a>
+        <a href="../Kontakt/Starseite.html">Kontakt</a>
+      </nav>
+    </div>
+
+    <main class="page">
+      <section class="faq-hero">
+        <img src="Verein hero.jpg" alt="FAQ-Hero" />
+      </section>
+
+      <section class="faq-frame">
+        <img src="FAQ.png" alt="FAQ Frame" />
+      </section>
+
+      <section class="faq-list" aria-label="Häufig gestellte Fragen">
+        <article class="faq-item">
+          <h3>Wie arbeitet der Verein?</h3>
+          <p>Die Vereinsmitglieder arbeiten ehrenamtlich, alle Spenden kommen wohnungslosen Menschen zugute.</p>
+        </article>
+
+        <article class="faq-item">
+          <h3>Wer wird durch den Verein unterstützt?</h3>
+          <p>Der Verein arbeitet regional und unterstützt insbesondere wohnungslose Menschen vor Ort.</p>
+        </article>
+
+        <article class="faq-item">
+          <h3>Wie wird meine Spende verwendet?</h3>
+          <p>Ein großer Teil der Spenden wird für Lebensmittel und Kosten für die Wiederbeschaffung von Dokumenten sowie für Fahrkarten verwendet. Außerdem werden Projekte zur gesellschaftlichen Teilhabe wohnungsloser Menschen finanziert.</p>
+        </article>
+
+        <article class="faq-item">
+          <h3>Kann ich meine Spende von der Steuer absetzen?</h3>
+          <p>Ja, der Verein ist vom Finanzamt als gemeinnützig anerkannt, Spendenquittungen werden Ihnen gern ausgestellt. Bitte teilen Sie uns dazu das Datum Ihrer Spende und Ihre Kontaktdaten mit.</p>
+        </article>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="footer__divider"></div>
+      <div class="footer__actions">
+        <a class="footer__button footer__button--orange" href="../Spenden/Starseite.html">Jetzt spenden</a>
+        <a class="footer__button footer__button--blue" href="../Kontakt/Starseite.html">Kontakt</a>
+      </div>
+      <div class="footer__links">
+        <a href="#">Impressum</a>
+        <a href="#">Datenschutz</a>
+      </div>
+    </footer>
+
+    <script src="../Startseite/script.js"></script>
+  </body>
+</html>

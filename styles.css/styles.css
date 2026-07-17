@@ -1,0 +1,32 @@
+@import url('https://fonts.googleapis.com/css2?family=Sofia+Sans+Condensed:wght@300;400;500;600;700;800&display=swap');
+
+:root {
+    --black: #000000;
+    --white: #ffffff;
+    --gray: #666666;
+    --lightgray: #B6B8BA;
+    --blue: #22A9AB;
+    --lightblue: #A5DAEC;
+    --orange: #F29F28;
+    --content-width: 1200px;
+}
+
+/*Grundeinstellungen*/
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Sofia Sans Condensed', 'Arial Narrow', Arial, sans-serif;
+    line-height: 1.6;
+    background-color: var(--white);
+    color: var(--black);
+}
+
+.container {
+    max-width: var(--content-width);
+    margin: 0 auto;
+    padding: 0 20px;
+}
